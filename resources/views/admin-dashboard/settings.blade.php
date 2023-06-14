@@ -10,7 +10,7 @@
         </a>
     </div>
 
-    <!-- small navigation -->
+    <!-- small navigation test -->
     <nav class="navigation this-box mb-3 d-none d-md-block settings-nav" style="background-color: #1e1e1e !important;">
         <ul class="font-nun small-nav">
             <li><a href="#settings_acc-set">Account Settings</a></li>
