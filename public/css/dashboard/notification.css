@@ -1,0 +1,11 @@
+.notification{
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}.notif-btn{
+    background-color: #1e1e1e;
+    color: #e1e1e1;
+}.notif-btn:hover{
+    background-color: #505050;
+    color: #e1e1e1;
+}

@@ -1,0 +1,74 @@
+/* NAVBAR */
+.navbar-cover{
+    background-image: url('{{ asset("images/registrar01.jpg") }}');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}.navbar-cover::before{
+    content: "";
+    background-color: rgba(39, 0, 0, 0.5);
+    position: absolute;
+    height: 100%;
+    width:  100%;
+    z-index: 1;
+}.navbar-brand img{
+    height: 70px;
+}.navbar{
+    z-index: 1;
+}.navbar-brand{
+    white-space: normal !important;
+}.navbar-nav li a:hover{
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 3px;
+}.nav-link.active{
+    text-decoration: underline !important;
+    text-underline-offset: 5px !important;
+    text-decoration-thickness: 3px !important;
+}.nav-link{
+    color: white;
+}.navbar-nav{
+    font-size: 15px;
+}.offcanvas{
+    max-width: 70%;
+    background-color: #181818d5 !important;
+}.logo{
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}.menu{
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}.btn-appoint{
+    background-color: maroon !important;
+    color: white !important;
+    border-radius: none !important;
+    width: auto;
+}
+
+/* SITECONTent */
+.dashboard{
+    display: block;
+}
+
+/* DASHBOARD */
+/* dashboard announcements and appointments */
+.accordion-button{
+    background-color: maroon !important;
+    color: white !important;
+    font-weight: bold;
+}.accordion-collapse{
+    border: 2px solid maroon !important;
+}.accordion-button::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}.list-group{
+    color: white;
+}
+
+
+/* dashboard document lists for appointment */
+.dashboard-doc-app{
+    border: 3px solid maroon;
+    padding: 5%;
+}

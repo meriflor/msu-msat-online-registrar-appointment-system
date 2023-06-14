@@ -1,0 +1,54 @@
+.carousel-container {
+    width: 100%;
+}
+
+.card-carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    transition: all 0.3s;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #888;
+}
+
+.card-info {
+    display: none;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover .card-info {
+    display: block;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

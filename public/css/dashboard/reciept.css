@@ -1,0 +1,63 @@
+/* .receipt-box {
+    border: 2px solid #131313;
+    position: relative;
+    height: auto;
+    background-color: #f1f1f1;
+}
+.receipt-box::before {
+    content: "";
+    background-image: url(/images/msat-logo.png);
+    background-position: top right;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    height: 40%;
+    width: 40%;
+    z-index: 1;
+    top: 50px;
+    right: 50px;
+} */
+.receipt-box {
+    border: 2px solid #131313;
+    position: relative;
+    height: auto;
+    background-color: #f1f1f1;
+}
+
+.receipt-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    top: 50px;
+    right: 50px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.receipt-overlay img {
+    opacity: 0.35;
+    height: 40%;
+    width: 40%;
+    object-fit: contain;
+}
+
+
+.receipt-content {
+    z-index: 1;
+}
+
+.content-foot img {
+    width: 15%;
+    height: 15%;
+}
+.more-info img {
+    width: 100%;
+}
+.btn-proof {
+    background-color: maroon;
+    color: white;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}

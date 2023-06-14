@@ -1,0 +1,19 @@
+#requests-content{
+    display: none;
+}
+#dashboard-content{
+    display: block;
+}
+#message-content{
+    display: none;
+}
+#forms-content{
+    display: none;
+}
+#announcement-content{
+    display: none;
+}#faqs-content{
+    display: none;
+}#settings-content{
+    display: none;
+}

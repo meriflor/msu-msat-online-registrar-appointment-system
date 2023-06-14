@@ -1,0 +1,192 @@
+/* general css------------------------------- */
+hr {
+    color: #1e1e1e;
+}
+body {
+    background-color: #f1f1f1;
+}
+.this-box {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px !important;
+}
+#back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: 2px solid #333;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 10px rgba(8, 8, 8, 0.2);
+}
+#back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+}
+#back-to-top-btn.hide {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* rowed traces boxes in first column in md-4 */
+.track-boxes {
+    overflow-y: auto;
+    border-radius: 10px !important;
+}
+.cal-box {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px !important;
+}
+.boxes-req {
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 15px;
+    height: 100px;
+    overflow: hidden;
+}
+.doc-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: clip;
+    font-weight: bold;
+    color: #1e1e1e;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.doc-count {
+    background-color: #3e3e3e;
+    height: 100%;
+}
+.badge-dash-custom {
+    background-color: antiquewhite;
+    color: #1e1e1e;
+    padding: 3%;
+}
+
+/* Set the width and height of the scrollbar------------------------- */
+/* ::-webkit-scrollbar {
+    width: 7px;
+    height: 10px;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 10px;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+    background: #1e1e1e;
+    border-radius: 10px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #3e3e3e;
+} */
+
+.appointment-records {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px !important;
+}
+
+/* table-custom--------------------------------------- */
+/* .table {
+    border: 2px solid #1e1e1e;
+    width: 100%;
+}
+.table-head {
+    background-color: #1e1e1e;
+    color: white;
+}
+.td-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+} */
+th, td{
+    vertical-align: middle!important;
+}
+.btn-request-records {
+    background-color: #131313;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    color: #f3f3f3;
+}
+.btn-request-records:hover {
+    background-color: rgb(37, 37, 37);
+    color: #f3f3f3;
+}
+.btn-request-records:active {
+    background-color: #131313;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #f3f3f3;
+}
+.view-request {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: 0;
+}
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+    color: white;
+    background-color: #131313;
+}
+.btn-disable {
+    border: 2px solid;
+    font-weight: bold;
+}
+.form-check-input:checked[type="checkbox"] {
+    background-color: black !important;
+}
+.form-check-input:disabled {
+    opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+    .table {
+        overflow-x: auto !important;
+        display: block !important;
+    }
+    #table {
+        overflow-x: auto !important;
+        display: block !important;
+    }
+}
+
+.btn-reverse {
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+}
+.btn-reverse:hover {
+    color: #131313;
+    background-color: white;
+}
+
+ul.small-nav li:not(:last-child) a:after {
+    content: " | ";
+    margin-left: 20px;
+}
+
+.p-shad-w {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}

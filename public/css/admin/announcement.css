@@ -1,0 +1,10 @@
+#announcement-body,
+#faqs-body{
+    padding: 5% 12%;
+}#announcement-body pre,
+#faqs-body pre{
+    white-space: pre-wrap;
+    text-align: justify;
+    padding: 3% 15%;
+}
+

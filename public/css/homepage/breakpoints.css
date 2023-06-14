@@ -1,0 +1,75 @@
+@media (max-width: 575.98px) { 
+    .logo .location{
+        display: none;
+    }.content-cover{
+        padding: 30px 0;
+        width: 80%;
+        margin: 0 10%;
+        display: flex;
+        align-items: center;
+    }
+    .announcement{
+        padding: 5% 10%;
+        margin-top: 10px;
+    }
+    .announcement .head{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .make-appoint{
+        order: -1;
+    }#btn-make-appoint{
+        padding: 2px 10px !important;
+    }
+
+    #btn-support p{
+        display: none;
+    }#btn-support {
+        padding: 12px;
+    }
+ }  /* xs */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .logo .location{
+        display: none;
+    }.content-cover{
+        padding: 50px 0;
+        width: 80%;
+        margin: 0 10%;
+        display: flex;
+        align-items: center;
+    }
+    .announcement{
+        padding: 5% 10%;
+        margin-top: 10px;
+    }
+    .announcement .head{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .make-appoint{
+        order: -1;
+    }#btn-make-appoint{
+        padding: 2px 10px !important;
+    }
+    #btn-support p{
+        display: none;
+    }#btn-support{
+        padding: 15px;
+    }
+ }  /* sm */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .logo .location{
+        display: none;
+    }
+ }  /* md */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    
+ }  /* lg */
+@media (min-width: 1200px) and (max-width: 1399.98px) { 
+    
+ }  /* xl */
+@media (min-width: 1400px) { 
+    
+ }  /* xxl */

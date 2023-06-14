@@ -1,0 +1,56 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0 !important;
+}.navigation ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}.navigation li {
+    margin: 0 10px; 
+}.navigation a {
+    color: #333;
+    text-decoration: none;
+}.navigation a:hover {
+    color: #666;
+}
+
+.btn-custom{
+    border: 0;
+    margin: 0;
+}.btn-custom:focus{
+    border: 0;
+    margin: 0;
+}.btn-custom:active{
+    border: 0;
+    margin: 0;
+}.btn-custom img{
+    width: 25px;
+    height: 25px;
+}
+
+#forms-body, #courses-body{
+    padding: 5% 12%;
+}
+
+/* accordion */
+.accordion-button:not(.collapsed) {
+    color: #131313;
+    background-color: white;
+    box-shadow: none;
+}.accordion-item{
+    border: none;
+    color: #131313;
+}.accordion-button{
+    border-bottom: 2px solid #333;
+}.accordion{
+    --bs-accordion-btn-focus-border-color: #131313;
+    --bs-accordion-btn-focus-box-shadow: none;
+}
+
+.list-group-item {
+    border: 1px solid rgba(8, 8, 8, 0.2);
+}

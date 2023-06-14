@@ -1,0 +1,15 @@
+.modal-dialog-confirm{
+    background-color: #800000;
+    color: white;
+}
+.modal-confirm-padding{
+    padding: 40px !important;
+}.btn-confirm{
+    background-color: white;
+    color: #800000;
+}.btn-confirm:hover{
+    background-color: #660000;
+    color: white;
+}#college-form{
+    color: black;
+}

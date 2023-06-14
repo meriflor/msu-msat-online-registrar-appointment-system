@@ -1,0 +1,26 @@
+@media (max-width: 575.98px) { 
+    
+}  /* xs */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+   
+}  /* sm */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+   .faq-sect{
+       height: 100%;
+   }
+}  /* md */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+   .faq-sect{
+       height: 100%;
+   }
+}  /* lg */
+@media (min-width: 1200px) and (max-width: 1399.98px) { 
+   .faq-sect{
+       height: 100%;
+   }
+}  /* xl */
+@media (min-width: 1400px) { 
+   .faq-sect{
+       height: 100%;
+   }
+}  /* xxl */

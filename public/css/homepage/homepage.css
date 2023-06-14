@@ -1,0 +1,147 @@
+.homepage-cover {
+    background-image: url("/images/registrar05.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.homepage-cover::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    margin: 0;
+}
+
+.content-cover {
+    margin-right: 0;
+    z-index: 2;
+    padding: 50px 0;
+}
+.con1-pad {
+    padding: 0 !important;
+    margin: 0;
+}
+.announcement {
+    background-color: rgba(60, 0, 0, 0.7);
+    margin: 0;
+    padding: 3% 20%;
+    color: white;
+    position: relative;
+}
+.notice {
+    background-color: rgba(17, 0, 0, 0.527);
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    padding: 10px;
+    margin: 20px 0;
+    text-align: justify;
+}
+p {
+    margin: 0;
+}
+#postSubtitle {
+    margin-top: 20px;
+}
+
+.make-appoint {
+    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-align: end;
+    padding: 10px 10% 10px 5%;
+    flex-direction: column;
+}
+
+.fixed-bottom {
+    right: 30px;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.contactus-form {
+    display: none;
+}
+
+.appointment {
+    margin: 0;
+}
+.appointment-forms {
+    background-color: maroon;
+    padding: 40px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.form-group div {
+    padding: 0 5px;
+}
+#input-acadYear,
+#input-gradYear {
+    display: none;
+}
+
+.appointment01 {
+    margin: 0;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about {
+    background-color: white;
+    color: black;
+}
+.about-subtitle {
+    text-align: justify;
+    margin-top: 20px;
+}
+.about-details {
+    padding: 5% 10%;
+    height: auto;
+}
+.about-image {
+    background-image: url("/images/registrar02.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.about-image::before {
+    content: "";
+    background-color: rgba(30, 0, 0, 0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+.staff {
+    margin: 50px 0 0 0;
+    padding: 0;
+}
+
+.space {
+    height: 100px;
+}
+.footer {
+    /* height: 50px; */
+    padding: 5%;
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.border-custom {
+    height: 150px;
+    width: 0;
+    border: 1px solid white;
+}

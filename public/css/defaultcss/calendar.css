@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Karma:wght@300;400;500;600;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Sanchez:ital@0;1&display=swap");
+
+.fc-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    background-color: rgb(223, 223, 223);
+}
+.fc-head {
+    background-color: maroon;
+    color: white;
+}
+.fc-right,
+.fc-left,
+.fc-center,
+.fc {
+    font-family: "Nunito", sans-serif;
+}
+.fc-bg table tbody tr .fc-today {
+    background: cadetblue;
+    opacity: 0.5;
+}
+.fc-today-01 {
+    background: cadetblue;
+    opacity: 0.5;
+}
+.fc-disabled-01 {
+    background-color: grey !important;
+    opacity: 0.5;
+}
+.fc-day-header {
+    padding: 10px !important;
+}
+.fc-event-available {
+    background-color: #7cb58c !important;
+    border: none !important;
+}
+.fc-event-full {
+    background-color: #ad6468 !important;
+    border: none !important;
+}
+.fc-event-container {
+    text-align: center !important;
+    padding: 5px !important;
+}
+.fc-selected-date {
+    background-color: lightblue !important;
+    opacity: 0.5;
+}
+.legend-box {
+    height: 20px;
+    width: 20px;
+}
+.fc-disable-user {
+    background-color: white !important;
+    opacity: 0.5;
+}

@@ -1,0 +1,127 @@
+.faq-login-sect {
+    padding: 7% 10%;
+    background-color: white;
+}
+.faq-login-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+/* frequently asked questions section */
+.faq-sect {
+    padding: 5%;
+    margin: 0;
+    background-image: url("/images/registrar02.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.faq-sect::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+.faq-sect-body {
+    position: inherit;
+    z-index: 2;
+}
+.msat-logo {
+    width: 30%;
+    opacity: 70%;
+    float: left;
+}
+img {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+}
+.article {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    margin-top: 10px;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* login-register section */
+.login-register-sect {
+    padding: 3%;
+    margin: 0;
+}
+.login-sect-head,
+.register-sect-head {
+    margin-bottom: 20px;
+}
+.btn-login-register {
+    float: right;
+    border-radius: 0 !important;
+    border: 3px solid maroon !important;
+    color: maroon;
+    background-color: white;
+    width: auto;
+}
+.btn-login-register:hover {
+    color: white;
+    background-color: maroon;
+}.btn-login-register:active {
+    border: 3px solid maroon !important;
+}
+.forgot-pass-link {
+    float: right;
+    color: maroon !important;
+}
+.forgot-pass-link:hover {
+    color: rgb(27, 0, 0);
+}
+.login-sect,
+.register-sect {
+    padding: 5%;
+}
+.faq {
+    font-weight: 500;
+}
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.register-sect {
+    display: none;
+}
+.login-sect {
+    display: block;
+}
+.register-input {
+    margin-right: 10px;
+}
+#registerBtn,
+#signinBtn {
+    border: none !important;
+    background-color: white !important;
+    text-decoration: underline;
+}
+#registerBtn:hover,
+#signinBtn:hover {
+    background-color: white !important;
+    color: #800000;
+}
+.register-sect form div div input {
+    background-color: rgb(241, 241, 241);
+    border: none;
+    border-bottom: 1px solid #800000;
+}
+.register-sect form div div select {
+    background-color: rgb(241, 241, 241);
+    border: none;
+    border-bottom: 1px solid #800000;
+}

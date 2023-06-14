@@ -1,0 +1,54 @@
+.settings-nav a{
+    color: #e1e1e1 !important;
+}.settings-btn{
+    color: #e1e1e1 !important;
+    background-color: #1e1e1e !important;
+}.settings-btn small{
+    color: #e1e1e1 !important;
+}.settings-btn .logo{
+    height: 25px;
+    width: 25px;
+}.settings-btn-white{
+    color: #1e1e1e!important;
+    background-color: #f3f3f3 !important;
+    padding: 0 !important;
+    border: none;
+}.settings-btn-white img{
+    height: 23px;
+    width: 23px;
+}.settings-input{
+    background-color: #e9e9e9;
+    border-bottom: 1px solid #1e1e1e94;
+}.settings-prof-img {
+    position: relative;
+    height: 4.68cm; /* Set the desired height for the container */
+    width: 3.74cm; /* Set the desired height for the container */
+}.settings-prof-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}.settings-prof-img::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}.settings-web-img {
+    position: relative;
+    width: 405px;
+    height: 232px;
+}.settings-web-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}.settings-web-img::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
