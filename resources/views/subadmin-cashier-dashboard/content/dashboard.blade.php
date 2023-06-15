@@ -98,8 +98,8 @@
                 @foreach($walkin_payment as $payment)
                 <tr class="text-center">
                     <td>{{ $payment->appointment->booking_number }}</td>
-                    <td>{{ $payment->user->school_id }}</td>
-                    <td>{{ $payment->user->lastName . ", " . $payment->user->firstName . " " . substr($payment->user->middleName, 0, 1) . ". ". $payment->user->suffix }}</td>
+                    <td>{{ $payment->appointment->user->school_id }}</td>
+                    <td>{{ $payment->appointment->user->lastName . ", " . $payment->appointment->user->firstName . " " . substr($payment->appointment->user->middleName, 0, 1) . ". ". $payment->appointment->user->suffix }}</td>
                     <td>{{ $payment->appointment->form->name }}</td>
                     <td>{{ $payment->appointment->num_copies }}</td>
                     <td>{{ \Carbon\Carbon::parse($payment->appointment->created_at)->format('F d, Y') }}</td>
