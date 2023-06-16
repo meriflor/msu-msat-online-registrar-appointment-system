@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Expr\FuncCall;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Notifications\AppRemarksUpdate;
 use App\Notifications\ConfirmedPaymentNotification;
 use App\Notifications\SetAppointmentNotification;
@@ -148,9 +150,24 @@ class adminController extends Controller
                             ->get();
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
                             ->get();
+        $requests = Appointment::where('status', 'Pending')
+                    ->where('payment_status', 'Requesting')
+                    ->get();
+        $filteredRequests = [];
+        foreach ($requests as $request) {
+            $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
+
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
         
         
-        return view('admin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs'));
+        return view('admin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs', 'filteredRequests'));
     }
 
 

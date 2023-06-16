@@ -17,8 +17,8 @@
             <li><a href="#dashboard-content">Calendar</a></li>
             <li><a href="#pendingReq">
                 Pending Requests 
-                @if(count($pendingRequests) > 0)
-                <span class="badge bg-danger"> {{ count($pendingRequests )}}</span>
+                @if(count($filteredRequests) > 0)
+                <span class="badge bg-danger"> {{ count($filteredRequests )}}</span>
                 @endif
             </a></li>
             <li><a href="#appRec">Request Records</a></li>
@@ -128,7 +128,7 @@
                         Pending Requests
                     </div>
                 </div>
-                @if(count($pendingRequests)>0)
+                @if(count($filteredRequests)>0)
                 <table
                     class="table font-nun hover display compact row-border"
                     id="appointmentRecords">
@@ -144,7 +144,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                    @foreach ($pendingRequests as $booking)
+                    @foreach ($filteredRequests as $booking)
                         <tr class="text-center">
                             <td>{{ $booking->booking_number }}</td>
                             <td>{{ $booking->user->school_id }}</td>

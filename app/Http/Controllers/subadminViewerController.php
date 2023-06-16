@@ -69,11 +69,26 @@ class subadminViewerController extends Controller
         $pendingRequests = Appointment::where('status', 'Pending')
                             ->where('payment_status', 'Requesting')
                             ->get();
+        $requests = Appointment::where('status', 'Pending')
+                    ->where('payment_status', 'Requesting')
+                    ->get();
+        $filteredRequests = [];
+        foreach ($requests as $request) {
+            $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
+
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
                             ->where('payment_status', 'Approved')
                             ->get();
         
-        return view('subadmin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs'));
+        return view('subadmin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs', 'filteredRequests'));
     }
 
     // review requests by date through calendar
@@ -125,16 +140,6 @@ class subadminViewerController extends Controller
         $requests = Appointment::where('status', 'Pending')
                     ->where('payment_status', 'Requesting')
                     ->get();
-        // $requests = Appointment::where('status', 'Pending')
-        //                 ->where('payment_status', 'Requesting')
-        //                 ->where(function ($query) {
-        //                     $query->whereHas('user.notifications', function ($subQuery) {
-        //                         $subQuery->where('data->notif_type', 'Re-upload Requirements')
-        //                             ->where('data->uploaded', 1);
-        //                     })
-        //                     ->orWhereDoesntHave('user.notifications');
-        //                 })
-        //                 ->get();
         $filteredRequests = [];
         foreach ($requests as $request) {
             $notification = DB::table('notifications')
@@ -147,7 +152,6 @@ class subadminViewerController extends Controller
                 $filteredRequests[] = $request;
             }
         }
-        // dd($filteredRequests);
         $pending_payments = Appointment::where('status', 'Confirmed Payment')
                         ->where('payment_status', 'Pending')
                         ->get();
@@ -186,6 +190,21 @@ class subadminViewerController extends Controller
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
                     ->where('payment_status', 'Approved')
                     ->get();
+        $requests = Appointment::where('status', 'Pending')
+                    ->where('payment_status', 'Requesting')
+                    ->get();
+        $filteredRequests = [];
+        foreach ($requests as $request) {
+            $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
+
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
         return view(
             'subadmin-dashboard.processed-requests', 
             compact(
@@ -193,7 +212,8 @@ class subadminViewerController extends Controller
                 'onprocess',
                 'ready',
                 'pendingRequests',
-                'processedDocs'
+                'processedDocs',
+                'filteredRequests'
                 )
         );
     }
