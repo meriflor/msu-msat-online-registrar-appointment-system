@@ -23,6 +23,7 @@ use PhpParser\Node\Expr\FuncCall;
 use App\Notifications\AppRemarksUpdate;
 use App\Notifications\ConfirmedPaymentNotification;
 use App\Notifications\SetAppointmentNotification;
+use App\Notifications\ReuploadRequirementsNotification;
 
 class adminController extends Controller
 {
@@ -202,33 +203,42 @@ class adminController extends Controller
     public function updateRemark(Request $request){
         $app_id = $request->input('app_id');
         $appointment = Appointment::find($app_id);
-        // dd($request->input('remarks'));
-        $appointment->remarks = $request->input('remarks');
-        $appointment->save();
+        // // dd($request->input('remarks'));
+        // $appointment->remarks = $request->input('remarks');
+        // $appointment->save();
         // Create a new notification and store it in the database
-        $notif_type = $request->input('notif_type');
+        
         $doc = $request->input('doc');
         $resched = $request->input('resched_check');
         $title = $request->input('title');
+        $remarks = $request->input('remarks');
 
         $bookings = Booking::where('appointment_id', $app_id)->first();
         if($resched == null){
             $bookings->resched = 0;
         }else{
-            
             $bookings->resched = $resched;
         }
         $bookings->save();
 
-        $existingNotification = $appointment->user->notifications()
-            ->where('data->app_id', $app_id)
-            ->where('data->notif_type', 'remarks')
-            ->first();
-        if($existingNotification){
-            $existingNotification->delete();
+        // review deleting existing notiication with same remarks as the notif type
+        // $existingNotification = $appointment->user->notifications()
+        //     ->where('data->app_id', $app_id)
+        //     ->where('data->notif_type', 'remarks')
+        //     ->first();
+        // if($existingNotification){
+        //     $existingNotification->delete();
+        // }
+
+        if($title = "Re-upload Requirements Request:"){
+            $notif_type = "Re-upload Requirements";
+            $notification = new ReuploadRequirementsNotification($remarks, $app_id, $notif_type, 0);
+            $appointment->user->notify($notification);
+        }else{
+            $notif_type = $request->input('notif_type');
+            $notification = new AppRemarksUpdate($remarks, $app_id, $notif_type, $title, $doc, $resched);
+            $appointment->user->notify($notification);
         }
-        $notification = new AppRemarksUpdate($appointment->remarks, $app_id, $notif_type, $title, $doc, $resched);
-        $appointment->user->notify($notification);
         
         return redirect()->back();
     }

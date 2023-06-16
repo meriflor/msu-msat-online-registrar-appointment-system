@@ -149,7 +149,7 @@
                                 @if($has_resched)
                                     <span style="color: #f3f3f3; background-color: maroon;"><i><b>Reschedule</b></i></span>
                                 @else
-                                    @if($pendapp->status === ('Confirmed Payment' || 'Pending'))
+                                    @if($pendapp->status === 'Confirmed Payment' || $pendapp->status === 'Pending')
                                         <span style="color: #4a7453;"><i><b>Pending</b></i></span>
                                     @elseif($pendapp->status === 'On Process')
                                         <span style="color: #3c8fad;"><i><b>On Process</b></i></span>
@@ -479,5 +479,6 @@
             
     </script>
     @include('appointment.modal.reschedule')
+    @include('appointment.modal.reupload-req')
 </body>
 </html>

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Expr\FuncCall;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Notifications\AppRemarksUpdate;
 
 class subadminViewerController extends Controller
@@ -68,6 +70,7 @@ class subadminViewerController extends Controller
                             ->where('payment_status', 'Requesting')
                             ->get();
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
+                            ->where('payment_status', 'Approved')
                             ->get();
         
         return view('subadmin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs'));
@@ -93,8 +96,8 @@ class subadminViewerController extends Controller
                         ->where('payment_status', 'Requesting')
                         ->get();
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
-            ->where('payment_status', 'Approved')
-            ->get();
+                        ->where('payment_status', 'Approved')
+                        ->get();
 
         return view('subadmin-dashboard.request', compact('ready', 'claimed', 'thisDay', 'pendingRequests', 'processedDocs'));
     }
@@ -122,6 +125,29 @@ class subadminViewerController extends Controller
         $requests = Appointment::where('status', 'Pending')
                     ->where('payment_status', 'Requesting')
                     ->get();
+        // $requests = Appointment::where('status', 'Pending')
+        //                 ->where('payment_status', 'Requesting')
+        //                 ->where(function ($query) {
+        //                     $query->whereHas('user.notifications', function ($subQuery) {
+        //                         $subQuery->where('data->notif_type', 'Re-upload Requirements')
+        //                             ->where('data->uploaded', 1);
+        //                     })
+        //                     ->orWhereDoesntHave('user.notifications');
+        //                 })
+        //                 ->get();
+        $filteredRequests = [];
+        foreach ($requests as $request) {
+            $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
+
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
+        // dd($filteredRequests);
         $pending_payments = Appointment::where('status', 'Confirmed Payment')
                         ->where('payment_status', 'Pending')
                         ->get();
@@ -137,7 +163,8 @@ class subadminViewerController extends Controller
                 'requests',
                 'pending_payments',
                 'pendingRequests',
-                'processedDocs'
+                'processedDocs',
+                'filteredRequests'
                 )
         );
     }

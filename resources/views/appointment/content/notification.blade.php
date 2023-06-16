@@ -215,6 +215,53 @@
             @endif
             @endforeach
         </div>
+        <!-- review reupload requirments -->
+        @elseif($notification->data['notif_type'] == "Re-upload Requirements")
+        <div class="notification p-4 mb-4" style="background-color: #e5c8bd;">
+            <div class="d-flex flex-column align-items-start">
+                <div class="d-flex flex-row align-items-center">
+                    <p class="fs-6 m-0 me-2"> 
+                        <span class="font-bold" style="color:#9f2a00;">Re-upload Requirements Notification.</span>
+                    </p>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <small>{{ $notification->created_at->diffForHumans() }} 
+                        <span>
+                            <a style="color: #1e1e1e;" data-bs-toggle="collapse" href="#{{ $notification->id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                View Notification
+                            </a>
+                        </span>
+                    </small>
+                </div>
+            </div>
+            @foreach($bookings as $booking)
+            @if($notification->data['app_id'] == $booking->id)
+            <div class="collapse mt-3" id="{{ $notification->id }}">
+                {!! $notification->data['remarks'] !!}
+                <div class="d-flex flex-row justify-content-end mt-3">
+                        @if($notification->data['uploaded'] == 0)
+                        <button type="submit" class="btn notif-btn mt-3 upload_req_button" id="upload_requirements" data-app_id="{{ $notification->data['app_id'] }}">
+                            Upload Requirements
+                        </button>
+                        @else
+                        <small><i>Already uploaded the requirements.</i></small>
+                        @endif    
+                </div>
+                <div class="mt-3">
+                    <h5 class="m-0">Request Detail</h5>
+                    <hr>
+                    <div class="d-flex flex-column">
+                        <p class="fs-6 m-0 mt-2">
+                            <span class="font-bold">Document Requested:</span>  
+                            <span>  {{ $booking->appointment->form->name }}</span>
+                        </p>
+                        <small>Requested on: {{ $booking->appointment->created_at->format('M d, Y') }} <a style="color: #1e1e1e;" href="/request-records">Click Here</a></small>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
+        </div>
         @else
         <div class="notification p-4 mb-4">
             <div class="d-flex flex-column align-items-start">

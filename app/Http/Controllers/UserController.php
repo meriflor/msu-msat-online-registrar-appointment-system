@@ -12,6 +12,7 @@ use App\Models\Booking;
 use App\Models\Announcement;
 use App\Models\Course;
 use App\Models\Payment;
+use App\Models\Requirement;
 use Illuminate\Support\Facades\Auth;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Hash;
@@ -414,6 +415,43 @@ class UserController extends Controller
             $appointment = Appointment::find($request->request_id);
             $appointment->appointment_date = Carbon::parse($request->appointment_date)->format('Y-m-d');
             $appointment->save();
+            return back();
+      }
+
+      public function reuploadRequirements(Request $request){
+            $appointment = Appointment::find($request->request_id);
+            $old_requirements = Requirement::where('booking_id', $request->request_id)->get();
+            foreach ($old_requirements as $requirement) {
+                  $filePath = public_path($requirement->file_path);
+                  if (file_exists($filePath)) {
+                      unlink($filePath);
+                  }
+                  $requirement->delete();
+            }
+            if ($request->hasFile('requirements')) {
+                  $requirements = $request->requirements;
+                  foreach ($requirements as $fileName) {
+                        $timestamp_req = time();
+                        $fileName_req = $appointment->user->id . '_' . $timestamp_req . '_' . $fileName->getClientOriginalName();
+                        $fileName_orig = $fileName->getClientOriginalName();
+                        $requirementPath = $fileName->move(public_path('images/requirements'), $fileName_req);
+                        $req = new Requirement();
+                        $req->booking_id = $appointment->id;
+                        $req->file_path = 'images/requirements/'.$fileName_req;
+                        $req->file_name = $fileName_orig;
+                        $req->save();
+                  }
+            }
+            $existingNotification = $appointment->user->notifications()
+                  ->where('data->notif_type', "Re-upload Requirements")
+                  ->where('data->app_id', $request->request_id)
+                  ->first();
+            if ($existingNotification) {
+                  $data = $existingNotification->data;
+                  $data['uploaded'] = 1; // Update the value to 1
+                  $existingNotification->data = $data;
+                  $existingNotification->save();
+            }
             return back();
       }
 }

@@ -33,7 +33,7 @@
                                         @if($has_resched)
                                             <span style="color: #f3f3f3; background-color: maroon;"><i><b>Reschedule</b></i></span>
                                         @else
-                                            @if($appointment->status == 'Pending')
+                                            @if($appointment->status === 'Confirmed Payment' || $appointment->status === 'Pending')
                                                 <span style="color: #4a7453;"><i><b> Pending</b></i></span>
                                             @elseif($appointment->status == 'On Process')
                                                 <span style="color: #3c8fad;"><i><b> On Process</b></i></span>
@@ -157,7 +157,7 @@
                                     @if($has_resched)
                                         <span style="color: #f3f3f3; background-color: maroon;"><i><b>Reschedule</b></i></span>
                                     @else
-                                        @if($appointment->status == 'Pending')
+                                        @if($appointment->status === 'Confirmed Payment' || $appointment->status === 'Pending')
                                             <span style="color: #4a7453;"><i><b> Pending</b></i></span>
                                         @elseif($appointment->status == 'On Process')
                                             <span style="color: #3c8fad;"><i><b> On Process</b></i></span>
@@ -246,7 +246,7 @@
             </div>
         @else
             <div class="appointment-records-lists">
-                <p>You have no bookings at the moment.</p>
+                <p>No records found.</p>
             </div>
         @endif
     </div>

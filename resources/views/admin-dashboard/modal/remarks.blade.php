@@ -12,6 +12,8 @@
                     <input type="hidden" id="app_id" name="app_id" value="">
                     <input type="hidden" id="notif_type" name="notif_type" value="remarks">
                     <input type="hidden" id="doc" name="doc" value="">
+                    <!-- review for now setting the resched as 0 to avoid error -->
+                    <!-- <input type="hidden" id="resched" name="resched_check" value="0"> -->
                     <div class="d-flex flex-row align-items-center mb-3 row">
                         <div class="col-md-6">
                             <p class="p-0 m-0">To: <span id="last_name"></span>, <span id="first_name"></span></p>
@@ -34,8 +36,9 @@
                                 <option value="Reminder details:">Reminder details:</option>
                                 <option value="Follow-up instructions:">Follow-up instructions:</option>
                                 <option value="Next steps:">Next steps:</option>
-                                <option value="Appointment Cancellation">Appointment Cancellation:</option>
-                                <option value="Appointment Rescheduling Request">Rescheduling Request:</option>
+                                <!-- <option value="Appointment Cancellation">Appointment Cancellation:</option> -->
+                                <!-- <option value="Appointment Rescheduling Request">Rescheduling Request:</option> -->
+                                <option value="Re-upload Requirements Request:">Re-upload Requirements Request:</option>
                             </select>
                         </div>
                         <div class="col-md-6">

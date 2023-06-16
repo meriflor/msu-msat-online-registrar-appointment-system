@@ -71,7 +71,7 @@
                 </div>
                 <div id="remarks_payment_div">
                     <label for="payment_remarks" class="mt-2">Payment Remarks:</label>
-                    <textarea type="text" class="form-control" name="remarks_payment" id="remarks_payment" placeholder="ex. You're payment should be PHP 20.00"></textarea>
+                    <textarea type="text" class="form-control" name="remarks_payment" id="remarks_payment" placeholder="ex. Your payment should be PHP 20.00"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

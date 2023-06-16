@@ -19,7 +19,7 @@
                                 <div class="d-flex flex-row align-items-center row">
                                     <div class="col-md-6" style="flex: 1;">
                                         <p class="fs-6 m-0"><b>Status: </b>
-                                        @if($appointment->status == 'Pending')
+                                        @if($appointment->status === 'Confirmed Payment' || $appointment->status === 'Pending')
                                             <span style="color: #4a7453;"><i><b> Pending</b></i></span>
                                         @elseif($appointment->status == 'On Process')
                                             <span style="color: #3c8fad;"><i><b> On Process</b></i></span>

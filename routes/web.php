@@ -52,6 +52,7 @@ Route::middleware([AuthCheck::class,AlreadyLoggedIn::class])->group(function () 
     Route::get('/unread-notif', [UserController::class, 'unreadNotif'])->name('unread-notif');
     Route::put('/upload-payment', [UserController::class, 'uploadPayment'])->name('payment.upload');
     Route::put('/set-appointment', [UserController::class, 'setAppointment'])->name('set.appointment');
+    Route::post('/requirements-upload', [UserController::class, 'reuploadRequirements'])->name('requirements.upload');
 });
 
 Route::middleware([AuthCheck::class, AdminCheck::class])->prefix('dashboard-admin')->group(function () {
