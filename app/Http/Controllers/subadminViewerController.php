@@ -113,8 +113,23 @@ class subadminViewerController extends Controller
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
                         ->where('payment_status', 'Approved')
                         ->get();
+        $requests = Appointment::where('status', 'Pending')
+                        ->where('payment_status', 'Requesting')
+                        ->get();
+        $filteredRequests = [];
+            foreach ($requests as $request) {
+                $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
 
-        return view('subadmin-dashboard.request', compact('ready', 'claimed', 'thisDay', 'pendingRequests', 'processedDocs'));
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
+
+        return view('subadmin-dashboard.request', compact('ready', 'claimed', 'thisDay', 'pendingRequests', 'processedDocs', 'filteredRequests'));
     }
     // fix
     public function viewAllRequest(Request $request){

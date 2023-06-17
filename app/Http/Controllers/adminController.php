@@ -194,8 +194,22 @@ class adminController extends Controller
         $processedDocs = Appointment::whereNotIn('status', ['Claimed', 'Ready to Claim'])
             ->where('payment_status', 'Approved')
             ->get();
+        $requests = Appointment::where('status', 'Pending')
+            ->where('payment_status', 'Requesting')
+            ->get();
+        $filteredRequests = [];
+        foreach ($requests as $request) {
+            $notification = DB::table('notifications')
+                ->where('data->notif_type', 'Re-upload Requirements')
+                ->where('data->app_id', $request->id)
+                ->where('data->uploaded', 0)
+                ->first();
 
-        return view('admin-dashboard.request', compact('ready', 'claimed', 'pendingRequests', 'processedDocs','thisDay'));
+            if (!$notification) {
+                $filteredRequests[] = $request;
+            }
+        }
+        return view('admin-dashboard.request', compact('ready', 'claimed', 'pendingRequests', 'processedDocs','thisDay', 'filteredRequests'));
     }
 
     //review ===========================Returning all request ===========================================================
@@ -227,7 +241,7 @@ class adminController extends Controller
         
         $doc = $request->input('doc');
         $resched = $request->input('resched_check');
-        $title = $request->input('title');
+        $title = $request->title;
         $remarks = $request->input('remarks');
 
         $bookings = Booking::where('appointment_id', $app_id)->first();
@@ -247,7 +261,7 @@ class adminController extends Controller
         //     $existingNotification->delete();
         // }
 
-        if($title = "Re-upload Requirements Request:"){
+        if($title === "Re-upload Requirements Request:"){
             $notif_type = "Re-upload Requirements";
             $notification = new ReuploadRequirementsNotification($remarks, $app_id, $notif_type, 0);
             $appointment->user->notify($notification);

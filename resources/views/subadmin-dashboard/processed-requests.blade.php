@@ -173,12 +173,14 @@
                                         Action
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark" style="background-color: #1e1e1e !important;">
+                                        @if($request->appointment_date != null)
                                         <li>
                                             <a  type="button"  class="dropdown-item view-request claimed-btn"  id="claimed-btn" data-claimed-id="{{ $request->id }}" data-bs-toggle="modal" data-bs-target="#status_appointment_modal">
                                                 Claimed
                                             </a>
                                         </li>
                                         <li><hr class="dropdown-divider" style="border-top: 1px solid rgba(255,255,255,0.4);"></li>
+                                        @endif
                                         <li>
                                             <a type="button" class="dropdown-item view-request view-btn" id="{{ $request->id }}">
                                                 View

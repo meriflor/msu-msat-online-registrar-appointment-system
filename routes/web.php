@@ -154,7 +154,7 @@ Route::put('update-status', [adminController::class, 'updateStatus'])->name('upd
     // Route::put('acceptStatus', [adminController::class, 'updateStatusAccept'])->name('acceptStatus');
     // Route::put('doneStatus', [adminController::class, 'updateStatusDone'])->name('doneStatus');
     // Route::put('claimedStatus', [adminController::class, 'updateStatusClaimed'])->name('claimedStatus');
-    Route::put('reschedule-request', [UserController::class, 'reschedAppointment'])->name('reschedule');
+    // Route::put('reschedule-request', [UserController::class, 'reschedAppointment'])->name('reschedule');
 
     Route::get('form/{id}',[formController::class,'viewOneForm']);  
     Route::put('edit-form',[formController::class,'editForm'])->name('editform');

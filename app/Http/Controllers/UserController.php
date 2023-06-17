@@ -342,28 +342,29 @@ class UserController extends Controller
             ));
       }
 
-      public function reschedAppointment(Request $request){
-            $app_id = $request->input('re_app_id');
-            $appointment = Appointment::find($app_id);
+      // public function reschedAppointment(Request $request){
+      //       $app_id = $request->input('re_app_id');
+      //       $appointment = Appointment::find($app_id);
 
-            // dd($request->input('re_app_date_input'));
-            $appointment->appointment_date = $request->input('re_app_date_input');
-            $appointment->remarks = null;
-            $appointment->save();
+      //       $appointment_date = Carbon::parse($request->input('re_app_date_input'))->format('Y-m-d');
+      //       dd($app_id);
+      //       $appointment->appointment_date = $appointment_date;
+      //       $appointment->remarks = null;
+      //       $appointment->save();
 
-            $bookings = Booking::where('appointment_id', $app_id)->first();
-            $bookings->resched = 0;
-            $bookings->save();
+      //       $bookings = Booking::where('appointment_id', $app_id)->first();
+      //       $bookings->resched = 0;
+      //       $bookings->save();
 
-            $existingNotification = $appointment->user->notifications()
-                  ->where('data->notif_type', "remarks")
-                  ->where('data->app_id', $app_id)
-                  ->first();
-            if($existingNotification){
-                  $existingNotification->delete();
-            }
-            return redirect()->back();
-      }
+      //       $existingNotification = $appointment->user->notifications()
+      //             ->where('data->notif_type', "remarks")
+      //             ->where('data->app_id', $app_id)
+      //             ->first();
+      //       if($existingNotification){
+      //             $existingNotification->delete();
+      //       }
+      //       return redirect()->back();
+      // }
 
       public function notifDelete($id, $notif_type){
             $bookings = Booking::find($id);

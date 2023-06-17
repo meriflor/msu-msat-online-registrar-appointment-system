@@ -9,14 +9,6 @@
         </p>
     </a>
 </div>
-<!-- <div class="d-flex flex-row align-items-center mb-3">
-    <a class="btn btn-custom d-flex flex-row align-items-center" href="/dashboard-admin-appointments/dashboard">
-        <img src="/images/back-arrow.png" class="me-3"
-        style=" height: 10px;
-                width: 10px;"/>
-        Home
-    </a>
-</div> -->
 <nav class="navigation this-box mb-3">
     <ul class="font-nun small-nav">
         <li><a href="#readytoclaim">Ready to Claim</a></li>
@@ -167,9 +159,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <button id="back-to-top-btn" class="btn btn-custom show" style="color: #131313;">Back to top</button>
 

@@ -58,14 +58,6 @@
                     <span class="badge bg-danger" id="pending-registration-count"></span>
                 </a>
             </li>
-            <!-- <li class="nav-item w-100">
-                <a href="/dashboard-admin/request-all" class="nav-link">Appointment Requests</a>
-            </li>
-            <li class="nav-item w-100">
-                <a href="/dashboard-admin/request-reschedule" class="nav-link">Appointment Remarks
-                </a>
-            </li> -->
-
             <hr />
             <li class="nav-item w-100">
                 <a href="/dashboard-admin/config" class="nav-link">Forms Configuration</a>

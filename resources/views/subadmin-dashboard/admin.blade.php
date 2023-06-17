@@ -64,7 +64,7 @@
                 <li class="nav-item w-100">
                     <a href="/dashboard-admin-appointments/pending-requests" class="nav-link"
                         >Pending Requests
-                        @if(count($filteredRequests) > 0)
+                        @if(!empty($filteredRequests) && count($filteredRequests) > 0)
                         <span class="badge bg-danger"> {{ count($filteredRequests )}}</span>
                         @endif
                     </a>

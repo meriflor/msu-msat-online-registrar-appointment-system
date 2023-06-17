@@ -50,7 +50,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a type="button" class="dropdown-item view-request remarks-btn" id="{{ $request->id }}" data-remarks-id="{{ $request->id }}" data-remarks-first="{{ $request->user->firstName }}" data-remarks-last="{{ $request->user->lastName }}" data-remarks-form="{{ $request->form->name }}">
+                                                <a type="button" class="dropdown-item view-request remarks-btn" id="{{ $request->id }}" data-remarks-id="{{ $request->id }}" data-remarks-first="{{ $request->user->firstName }}" data-remarks-last="{{ $request->user->lastName }}" data-remarks-form="{{ $request->form->name }}" data-remarks-type="reupload">
                                                     Remarks
                                                 </a>
                                             </li>
