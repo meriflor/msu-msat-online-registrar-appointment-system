@@ -95,13 +95,11 @@ class SettingsController extends Controller
         $admin->account_approved = null;
         $admin->account_rejected = null;
         $admin->role = $request->add_admin_role;
-        // dd($admin);
         $admin->save();
         return back();
     }
     
     public function adminAccountUpdate(Request $request, $id){
-
         $admin = User::find($id);
         $request->validate([
             'edit_admin_email' => [

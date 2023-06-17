@@ -55,17 +55,7 @@ class AppointmentSlotController extends Controller
         
 
         foreach ($appointmentSlots as $appointmentSlot) {
-            // fix
-            // $appDate = $appointmentSlot->slot_date;
             $start = $appointmentSlot->slot_date;
-            // $appDate = Carbon::parse($start)->format('F d, Y');
-
-            // $currentSlot = Appointment::where('appointment_date', $appDate)->count();
-            // $pendingSlot = Appointment::where('status', $pending)->where('appointment_date', $appDate)->count();
-            // $onProcessSlot = Appointment::where('status', $onProcess)->where('appointment_date', $appDate)->count();
-            // $readyToClaimSlot = Appointment::where('status', $readyToClaim)->where('appointment_date', $appDate)->count();
-            // $claimedSlot = Appointment::where('status', $claimed)->where('appointment_date', $appDate)->count();
-
             $currentSlot = Appointment::where('appointment_date', $start)
                 ->whereHas('bookings', function ($query) {
                     $query->where('resched', 0);

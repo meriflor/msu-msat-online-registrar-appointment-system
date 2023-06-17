@@ -223,52 +223,50 @@ class UserController extends Controller
         ));
     }
 
-    public function viewUserNotification(){
-        $user = array();
-        $appointments = Appointment::all();
-        $forms = Form::all();
+      public function viewUserNotification(){
+            $user = array();
+            $appointments = Appointment::all();
+            $forms = Form::all();
 
-        if (Session::has('loginId')) {
-        $user = User::where('id','=',Session::get('loginId'))->first();
-        $user_id = session('loginId');
-        $appointments = Appointment::where('user_id', $user_id)
-              ->orderBy('created_at', 'desc')
-              ->with(['user' => function ($query) {
-                    $query->select('id', 'firstName','lastName','middleName','email','suffix');
-              }, 'form' => function ($query) {
-                    $query->select('id', 'name','fee');
-              }])
-              ->get();
-        }
+            if (Session::has('loginId')) {
+            $user = User::where('id','=',Session::get('loginId'))->first();
+            $user_id = session('loginId');
+            $appointments = Appointment::where('user_id', $user_id)
+                  ->orderBy('created_at', 'desc')
+                  ->with(['user' => function ($query) {
+                        $query->select('id', 'firstName','lastName','middleName','email','suffix');
+                  }, 'form' => function ($query) {
+                        $query->select('id', 'name','fee');
+                  }])
+                  ->get();
+            }
 
-        $firstName = $user ? $user->firstName : null;
-        $lastName = $user ? $user->lastName : null;
-        $middleName = $user ? $user->middleName : null;
-        $suffix = $user ? $user->suffix : null;
-        $address = $user ? $user->address : null;
-        $school_id = $user ? $user->school_id : null;
-        $cell_no = $user ? $user->cell_no : null;
-        $civil_status = $user ? $user->civil_status : null;
-        $email = $user ? $user->email : null;
-        $birthdate = $user ? $user->birthdate : null;
-        $status = $user ? $user->status : null;
-        $acadYear = $user ? $user->acadYear : null;
-        $gradYear = $user ? $user->gradYear : null;
-        $gender = $user ? $user->gender : null;
-        $course = $user ? $user->course : null;
+            $firstName = $user ? $user->firstName : null;
+            $lastName = $user ? $user->lastName : null;
+            $middleName = $user ? $user->middleName : null;
+            $suffix = $user ? $user->suffix : null;
+            $address = $user ? $user->address : null;
+            $school_id = $user ? $user->school_id : null;
+            $cell_no = $user ? $user->cell_no : null;
+            $civil_status = $user ? $user->civil_status : null;
+            $email = $user ? $user->email : null;
+            $birthdate = $user ? $user->birthdate : null;
+            $status = $user ? $user->status : null;
+            $acadYear = $user ? $user->acadYear : null;
+            $gradYear = $user ? $user->gradYear : null;
+            $gender = $user ? $user->gender : null;
+            $course = $user ? $user->course : null;
 
-        $user_id = session('loginId');
-        $pending = Appointment::whereNotIn('status', ['Claimed'])
-                                ->where('user_id', $user_id)->get();
+            $user_id = session('loginId');
+            $pending = Appointment::whereNotIn('status', ['Claimed'])
+                                    ->where('user_id', $user_id)->get();
         
-        $announcements = Announcement::orderBy('created_at', 'desc')->take(5)->get();
+            $announcements = Announcement::orderBy('created_at', 'desc')->take(5)->get();
 
-            //notifications
             $notifications = User::find($user_id)
                   ->notifications()
                   ->orderBy('created_at', 'desc')
                   ->take(10)->get();
-            // Mark all notifications as read
             User::find($user_id)->unreadNotifications->markAsRead();
 
             $bookings = Booking::all();
@@ -283,13 +281,12 @@ class UserController extends Controller
                               ->orderBy('created_at', 'asc')
                               ->get();
 
-        return view('appointment.content.notification', compact('firstName','lastName','middleName','suffix','address','school_id','cell_no','civil_status','email','birthdate','gender','status', 'acadYear', 'gradYear', 'course',
-        'forms', 'bookings',
-        'appointments', 'pending', 'announcements', 'notifications', 'payments', 'pending_appointments', 'setting_appointment'
-        ));
-    }
+            return view('appointment.content.notification', compact('firstName','lastName','middleName','suffix','address','school_id','cell_no','civil_status','email','birthdate','gender','status', 'acadYear', 'gradYear', 'course',
+            'forms', 'bookings',
+            'appointments', 'pending', 'announcements', 'notifications', 'payments', 'pending_appointments', 'setting_appointment'
+            ));
+      }
 
-//     review request records
       public function viewRequestRecords(){
             $user = array();
             $appointments = Appointment::all();
@@ -342,41 +339,14 @@ class UserController extends Controller
             ));
       }
 
-      // public function reschedAppointment(Request $request){
-      //       $app_id = $request->input('re_app_id');
-      //       $appointment = Appointment::find($app_id);
-
-      //       $appointment_date = Carbon::parse($request->input('re_app_date_input'))->format('Y-m-d');
-      //       dd($app_id);
-      //       $appointment->appointment_date = $appointment_date;
-      //       $appointment->remarks = null;
-      //       $appointment->save();
-
-      //       $bookings = Booking::where('appointment_id', $app_id)->first();
-      //       $bookings->resched = 0;
-      //       $bookings->save();
-
-      //       $existingNotification = $appointment->user->notifications()
-      //             ->where('data->notif_type', "remarks")
-      //             ->where('data->app_id', $app_id)
-      //             ->first();
-      //       if($existingNotification){
-      //             $existingNotification->delete();
-      //       }
-      //       return redirect()->back();
-      // }
-
       public function notifDelete($id, $notif_type){
             $bookings = Booking::find($id);
             $user = $bookings->user;
-            // delete a specific notification by ID (in case code)
             $user->notifications()
                   ->where('data->app_id', $id)
                   ->where('data->notif_type', $notif_type)
                   ->delete();
             return back();
-            // // delete all the notifications for the user
-            // $user->notifications()->delete();
       }
       
       public function unreadNotif(){
@@ -449,7 +419,7 @@ class UserController extends Controller
                   ->first();
             if ($existingNotification) {
                   $data = $existingNotification->data;
-                  $data['uploaded'] = 1; // Update the value to 1
+                  $data['uploaded'] = 1;
                   $existingNotification->data = $data;
                   $existingNotification->save();
             }

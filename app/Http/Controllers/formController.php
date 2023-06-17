@@ -51,11 +51,9 @@ class formController extends Controller
             }
 
             if ($request->has('ask_acad_year')) {
-                  // Checkbox is checked
                   $form->acad_year = 1;
             }
             if ($request->has('ask_requirements')) {
-                  // Checkbox is checked
                   $form->requirements = 1;
             }
 
@@ -127,6 +125,6 @@ class formController extends Controller
             if($forms){
                   $forms->delete();
                   return response()->json(['success' => true, 'message' => 'You have deleted successfully']);
-            }return response()->json(['success' => false, 'message' => 'Were dead.']);
+            }return response()->json(['success' => false, 'message' => 'Error']);
       }
 }

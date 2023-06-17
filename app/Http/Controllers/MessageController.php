@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class MessageController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $message = new Message();
         $message->fullname = $request->input('fullname');
         $message->email = $request->input('email');
@@ -26,9 +25,7 @@ class MessageController extends Controller
         return view('admin-dashboard.message', compact('messages'));
     }
 
-    public function messageViewRequest($id)
-    {
-
+    public function messageViewRequest($id){
         $message = Message::find($id);
         dd($message);
         return response()->json([
@@ -39,14 +36,7 @@ class MessageController extends Controller
             'created_at' => $message->created_at
         ]);
     }
-    public function show(Message $message)
-    {
-        // Fetch the specific message based on the provided ID
-        // You can use the `$message` parameter directly, as Laravel will automatically resolve the message instance based on the route parameter
-
-        // Perform any additional logic or data manipulation as needed
-
-        // Return the message details as a JSON response
+    public function show(Message $message){
         return response()->json([
             'fullname' => $message->fullname,
             'email' => $message->email,
@@ -54,12 +44,9 @@ class MessageController extends Controller
             'message' => $message->message,
         ]);
     }
-    public function destroy(Message $message)
-    {
-        // Perform any necessary authorization checks or validation before deleting the message
 
+    public function destroy(Message $message){
         $message->delete();
-
         return response()->json(['message' => 'Message deleted successfully']);
     }
 }

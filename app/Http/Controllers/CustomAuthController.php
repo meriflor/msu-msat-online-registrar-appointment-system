@@ -130,55 +130,6 @@ class CustomAuthController extends Controller
             }
       }
 
-
-//------------------------// Retrieving and passing information to Appointment database and Displaying //-----------------------//
-// public function appointment(){ //user-dashboard
-
-//             $user = array();
-//             $appointments = Appointment::all();
-//             $forms = Form::all();
-
-//             if (Session::has('loginId')) {
-//             $user = User::where('id','=',Session::get('loginId'))->first();
-//             $user_id = session('loginId');
-//             $appointments = Appointment::where('user_id', $user_id)
-//                   ->orderBy('created_at', 'desc')
-//                   ->with(['user' => function ($query) {
-//                   }, 'form' => function ($query) {
-//                         $query->select('id', 'name','fee');
-//                   }])
-//                   ->get();
-//             }
-
-//             $firstName = $user ? $user->firstName : null;
-//             $lastName = $user ? $user->lastName : null;
-//             $middleName = $user ? $user->middleName : null;
-//             $suffix = $user ? $user->suffix : null;
-//             $address = $user ? $user->address : null;
-//             $school_id = $user ? $user->school_id : null;
-//             $cell_no = $user ? $user->cell_no : null;
-//             $civil_status = $user ? $user->civil_status : null;
-//             $email = $user ? $user->email : null;
-//             $birthdate = $user ? $user->birthdate : null;
-//             $status = $user ? $user->status : null;
-//             $acadYear = $user ? $user->acadYear : null;
-//             $gradYear = $user ? $user->gradYear : null;
-//             $gender = $user ? $user->gender : null;
-//             $course = $user ? $user->course : null;
-
-//             $user_id = session('loginId');
-//             $pending = Appointment::whereNotIn('status', ['Claimed'])
-//                                     ->where('user_id', $user_id)->get();
-            
-//             $announcements = Announcement::orderBy('created_at', 'desc')->take(5)->get();
-
-//             return view('appointment.appointment', compact('firstName','lastName','middleName','suffix','address','school_id','cell_no','civil_status','email','birthdate','gender','status', 'acadYear', 'gradYear', 'course',
-//             'forms',
-//             'appointments', 'pending', 'announcements'
-//             ));
-
-//  }
-
  //------------------------------------// Setting up Booking Appointment //--------------------------------------------------------// 
       public function bookAppointment(Request $request){
             $user_id = session('loginId');
@@ -198,25 +149,6 @@ class CustomAuthController extends Controller
             $appointment = new Appointment();
             $appointment->app_purpose = $request->app_purpose;
             $appointment->acad_year = $request ->acad_year;
-            // $appointment->appointment_date = $request ->appointment_date;
-            // $appointment->payment_method = $request ->payment_method;
-            // $appointment->reference_number = $request ->reference_number;
-
-            // if ($request->hasFile('proof_of_payment')) {
-            //       $proof_of_payment = $request->file('proof_of_payment');
-            //       if ($proof_of_payment->isValid()) {
-            //             // $pop_storage = $proof_of_payment->store('proof-of-payment');
-            //             $timestamp = time();
-            //             $fileName = $timestamp . '_' . $proof_of_payment->getClientOriginalName();
-            //             $pop_path = $proof_of_payment->move(public_path('images/proof-of-payment'), $fileName);
-            //             $appointment->proof_of_payment = 'images/proof-of-payment/'.$fileName;
-            //             // $appointment->proof_of_payment = $pop_storage;
-            //       } else {
-            //       return response()->json(['error' => 'Invalid file'], 400);
-            //       }
-            // } else {
-            //       $appointment->proof_of_payment = null;
-            // }
 
             $appointment->a_transfer = $request ->a_transfer;
             $appointment->a_transfer_school = $request ->a_transfer_school;
@@ -291,10 +223,7 @@ class CustomAuthController extends Controller
                   $user->gradYear = null;
             }
             $user->gender = $request->input('editGender');
-            // $user->course = $request->input('editCourse');
             $courseInput = $request->input('editCourse');
-            // dd($courseInput);
-            // if($user->course == )
             if($courseInput == "other"||$courseInput==null){
                   $user->course = $request->input('course_name');
             }else{
@@ -306,7 +235,6 @@ class CustomAuthController extends Controller
                   $user->account_rejected = null;
             }
 
-            // dd($user->course);
             $user->save();
 
             return redirect('/edit-profile')->with('success', 'User information updated successfully.');

@@ -50,14 +50,14 @@ class faqsController extends Controller
         $faqs->faqs_subtext = $request->editAnswer;
         $faqs->save();
     
-        return response()->json(['success' => true, 'message' => 'The Announcement is chu2.']);
+        return response()->json(['success' => true, 'message' => 'You have edited the FAQs sucessfully']);
     }
     public function delete(Request $request, $id){
         $faqs = Faq::find($id);
         
         if($faqs){
             $faqs->delete();
-              return response()->json(['success' => true, 'message' => 'You have deleted successfully']);
-        }return response()->json(['success' => false, 'message' => 'Were dead.']);
+              return response()->json(['success' => true, 'message' => 'You have deleted the FAQs successfully']);
+        }return response()->json(['success' => false, 'message' => 'Error']);
     }
 }

@@ -39,7 +39,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware([AuthCheck::class,AlreadyLoggedIn::class])->group(function () {
-    // Route::get('/dashboard', [CustomAuthController::class, 'appointment'])->name('appointment');
     Route::get('/dashboard', [UserController::class, 'viewUser'])->name('user-dashboard');
     Route::get('/request-records', [UserController::class, 'viewRequestRecords']);
     Route::get('/appointment-records', [UserController::class, 'viewUserAppointments']);
@@ -57,7 +56,6 @@ Route::middleware([AuthCheck::class,AlreadyLoggedIn::class])->group(function () 
 
 Route::middleware([AuthCheck::class, AdminCheck::class])->prefix('dashboard-admin')->group(function () {
     Route::get('dashboard',[adminController::class,'viewAdminRecords'])->name('dashboard-admin');
-    // Route::get('dashboard/request/{id}', [adminController::class, viewAdminRequest])
 
     // Admin Functions
     Route::post('announcement-store',[announcementController::class,'storeAnnouncement'])->name('announcement-store');
@@ -80,11 +78,6 @@ Route::middleware([AuthCheck::class, AdminCheck::class])->prefix('dashboard-admi
     Route::get('request-all', [adminController::class,'viewAllRequest']);
     Route::get('settings', [adminController::class,'viewSettings']);
     Route::get('registration-approval', [adminController::class,'viewUserRegistration']);
-
-    //Admin Forms Function
-    // Route::get('forms/{form}/edit', [FormController::class, 'edit'])->name('forms.edit');
-    // Route::put('forms/{form}', [FormController::class, 'update'])->name('forms.update');
-    // Route::delete('forms/{form}', [FormController::class,'destroy'])->name('forms.destroy');
     
     //Admin settings functions
     Route::post('add-staffs', [SettingsController::class, 'registrarStaffStore'])->name('add-staffs');
@@ -115,13 +108,11 @@ Route::middleware([AuthCheck::class, SubAdminCashier::class])->prefix('dashboard
 
     Route::post('/payment-status-update', [SubadminCashierController::class, 'updatePaymentStatus'])->name('payment-status-update');
 });
+
 Route::get('/incomplete-remarks/{id}', [SubadminCashierController::class, 'getIncompleteRemarks']);
 Route::get('/requested/{id}', [adminController::class, 'viewInfoRequest']);
-// to upload confirmation of payment from the handler side to notify user
 Route::post('/confirm-payment', [adminController::class, 'confirmPayment'])->name('payment.confirm');
-// to fetch the details of the payments
 Route::get('/payments/{id}', [adminController::class, 'paymentsInfo']);
-// updating the request status, accept, done, claimed
 Route::put('update-status', [adminController::class, 'updateStatus'])->name('update.status');
 
 
@@ -132,29 +123,17 @@ Route::put('update-status', [adminController::class, 'updateStatus'])->name('upd
     Route::post('/updateProfile', [CustomAuthController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/bookAppointment',[CustomAuthController::class,'bookAppointment'])->name('bookAppointment');
 
-    //Working in announcements -> temporary
     Route::get('/',[announcementController::class,'showAnnouncement'])->name('announcement');
     Route::get('announcement',[announcementController::class,'dashboardAnnouncement'])->name('announcement.dashboard');
 
-
-    //faqs sa user side dapit -> temporary
     Route::get('/faqs',[faqsController::class,'index'])->name('faqs');
     
-
-    //Para ni sa Crud sa calendar -> wala pani sure,, test rani
     Route::get('appointment_slots', [AppointmentSlotController::class, 'events'])->name('appointment_slots.events');
-    // Route::post('/appointment_slots', [AppointmentSlotController::class, 'store']);
     Route::post('/appointment_slots', [AppointmentSlotController::class, 'store'])->name('appointment_slots.store');
     Route::put('/appointment_slots/{appointmentSlot}', [AppointmentSlotController::class, 'update']);
     Route::delete('/appointment_slots/{appointmentSlot}', [AppointmentSlotController::class, 'destroy']);
 
-
-    //Bookings Status
     Route::get('bookings/{id}', [adminController::class, 'viewApp']);
-    // Route::put('acceptStatus', [adminController::class, 'updateStatusAccept'])->name('acceptStatus');
-    // Route::put('doneStatus', [adminController::class, 'updateStatusDone'])->name('doneStatus');
-    // Route::put('claimedStatus', [adminController::class, 'updateStatusClaimed'])->name('claimedStatus');
-    // Route::put('reschedule-request', [UserController::class, 'reschedAppointment'])->name('reschedule');
 
     Route::get('form/{id}',[formController::class,'viewOneForm']);  
     Route::put('edit-form',[formController::class,'editForm'])->name('editform');
@@ -164,16 +143,13 @@ Route::put('update-status', [adminController::class, 'updateStatus'])->name('upd
     Route::put('edit-announcement',[announcementController::class,'editAnnouncement'])->name('editannouncement');
     Route::delete('announcement/delete/{id}',[announcementController::class,'delete'])->name('deleteannouncement');  
 
-    //testing -> course
     Route::post('store-course',[courseController::class,'storeCourse'])->name('store-course');
     Route::put('edit-course',[courseController::class,'editCourse'])->name('editcourse');
     Route::delete('course/delete/{id}',[courseController::class,'delete'])->name('deletecourse');  
 
-    //testing -> faqs
     Route::get('faq/{id}',[faqsController::class,'viewOneFaq']);  
     Route::put('edit-faq',[faqsController::class,'editFaq'])->name('editfaq');
     Route::delete('faq/delete/{id}',[faqsController::class,'delete'])->name('deletefaq');  
-
 
     Route::delete('/appointment_slots/{appointmentSlot}', [AppointmentSlotController::class, 'destroy'])->name('appointment_slots.destroy');
     Route::put('appointment_slots/edit/{id}', [AppointmentSlotController::class, 'edit'])->name('slot.edit');
@@ -181,8 +157,6 @@ Route::put('update-status', [adminController::class, 'updateStatus'])->name('upd
     Route::delete('appointment/delete/{id}',[CustomAuthController::class,'cancel_appointment'])->name('cancelappointment');  
     Route::put('appointment/remarks', [adminController::class,'updateRemark'])->name('appointmentremarks');
 
-    //Message
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
     Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
-

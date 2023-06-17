@@ -166,7 +166,6 @@ class adminController extends Controller
             }
         }
         
-        
         return view('admin-dashboard.dashboard', compact('bookings', 'todayDocs', 'futureDocs', 'current_day', 'formCounts', 'pendingRequests', 'processedDocs', 'filteredRequests'));
     }
 
@@ -234,11 +233,6 @@ class adminController extends Controller
     public function updateRemark(Request $request){
         $app_id = $request->input('app_id');
         $appointment = Appointment::find($app_id);
-        // // dd($request->input('remarks'));
-        // $appointment->remarks = $request->input('remarks');
-        // $appointment->save();
-        // Create a new notification and store it in the database
-        
         $doc = $request->input('doc');
         $resched = $request->input('resched_check');
         $title = $request->title;
@@ -251,15 +245,6 @@ class adminController extends Controller
             $bookings->resched = $resched;
         }
         $bookings->save();
-
-        // review deleting existing notiication with same remarks as the notif type
-        // $existingNotification = $appointment->user->notifications()
-        //     ->where('data->app_id', $app_id)
-        //     ->where('data->notif_type', 'remarks')
-        //     ->first();
-        // if($existingNotification){
-        //     $existingNotification->delete();
-        // }
 
         if($title === "Re-upload Requirements Request:"){
             $notif_type = "Re-upload Requirements";
@@ -403,8 +388,6 @@ class adminController extends Controller
         $id = $request->request_id;
         $remarks = $request->input('remarks');
         $no_payment = $request->input('no_payment');
-        // $remarks = $request->remarks;
-        // $no_payment = $request->no_payment;
         $requester = Appointment::find($id);
 
         if($no_payment == 1){

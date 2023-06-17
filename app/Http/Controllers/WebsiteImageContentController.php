@@ -10,7 +10,6 @@ class WebsiteImageContentController extends Controller
 {
     public function updateImage(Request $request, $id){
         $imageWebsite = WebsiteImageContent::find($id);
-        // $imageWebsite->file_name = $request->upload_web_image;
         $previousImage = public_path($imageWebsite->file_name);
         if (File::exists($previousImage)) {
             File::delete($previousImage);

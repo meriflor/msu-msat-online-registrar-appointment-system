@@ -24,8 +24,7 @@ class courseController extends Controller
         $courses->course_name = $request->editCourseName;
         $courses->save();
 
-        return response()->json(['success' => true, 'message' => 'The Forms is chu2.']);
-        // return redirect()->back();
+        return response()->json(['success' => true, 'message' => 'You have edited the course sucessfully.']);
     }
 
 public function delete(Request $request, $id){
@@ -33,8 +32,8 @@ public function delete(Request $request, $id){
     
     if($courses){
           $courses->delete();
-          return response()->json(['success' => true, 'message' => 'You have deleted successfully']);
-    }return response()->json(['success' => false, 'message' => 'Were dead.']);
+          return response()->json(['success' => true, 'message' => 'You have deleted the course successfully']);
+    }return response()->json(['success' => false, 'message' => 'Error']);
 }
 
     
